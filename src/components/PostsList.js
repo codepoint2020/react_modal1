@@ -10,7 +10,7 @@ function PostsList({isPosting, onStopPosting}) {
         {
             id: 1,
             author: "Jerome Morales",
-            body: "Just want to get rich and get laid to lovely, sexy and hot women of all races on earth." 
+            body: "Coding even tired." 
         },
 
         {
