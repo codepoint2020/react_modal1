@@ -2,9 +2,12 @@
 
 import classes from './NewPost.module.css';
 
-function NewPost({onBodyChange, onAuthorChange}) {
+function NewPost({onBodyChange, onAuthorChange, onAddNewPost, onCancel}) {
+
+
+
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={onAddNewPost}>
       <p>
         <label htmlFor="body">Text</label>
         <textarea id="body" required rows={3} onChange={onBodyChange} />
@@ -14,6 +17,12 @@ function NewPost({onBodyChange, onAuthorChange}) {
         <label htmlFor="name">Your name</label>
         <input type="text" id="name" required onChange={onAuthorChange}/>
       </p>
+      <p className={classes.actions}> 
+        <button type="button" onClick={onCancel}>Cancel</button>
+        <button>Submit</button>
+      </p>
+
+      
     </form>
   );
 }

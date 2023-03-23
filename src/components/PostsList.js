@@ -30,6 +30,18 @@ function PostsList({isPosting, onStopPosting}) {
     const [ enteredBody, setEnteredBody ] = useState('');
     const [ enteredAuthor, setEnteredAuthor ] = useState('');
 
+
+    function addNewPost(event) {
+        event.preventDefault();
+        let copyData = [...myData];
+        let newEntry = {id: myData.length + 1, author: enteredAuthor, body: enteredBody};
+        // setMyData([copyData, newEntry]);
+        setMyData([...copyData, newEntry]);
+        // console.log(copyData);
+        onStopPosting();
+        
+     
+    }
     
     function bodyChangeHandler(event) {
         setEnteredBody(event.target.value);
@@ -38,7 +50,6 @@ function PostsList({isPosting, onStopPosting}) {
     function authorChangeHandler(event) {
         setEnteredAuthor(event.target.value);
     }
- 
 
     return (
         <>
@@ -47,13 +58,14 @@ function PostsList({isPosting, onStopPosting}) {
         <NewPost 
         onBodyChange={bodyChangeHandler} 
         onAuthorChange={authorChangeHandler}
+        onAddNewPost={addNewPost}
+        onCancel={onStopPosting}
         />
     </Modal> : null
         }
         
             <ul className={classes.posts}>
-                {}
-                <Post author={"author"} body={"body"}/>
+                {myData.map((post, index) => <Post key={index} author={post.author} body={post.body}/>)}
             </ul>
         </>
     )
